@@ -21,10 +21,11 @@ class Chouti2Spider(scrapy.Spider):
 
         cookie_jar = CookieJar()
         cookie_jar.extract_cookies(response, response.request)
-        for k, v in cookie_jar._cookies.items():
-            for i, j in v.items():
-                for m, n in j.items():
-                    self.cookie_dict[m] = n.value
+
+        # for k, v in cookie_jar._cookies.items():
+        #     for i, j in v.items():
+        #         for m, n in j.items():
+        #             self.cookie_dict[m] = n.value
 
         login_req = Request(
             url='http://dig.chouti.com/login',
@@ -40,7 +41,6 @@ class Chouti2Spider(scrapy.Spider):
 
     def check_login(self, response):
         '''拿到登录的状态'''
-        print('砂砾' in response.text)
         cookie_jar = CookieJar()
         cookie_jar.extract_cookies(response, response.request)
         for k, v in cookie_jar._cookies.items():
